@@ -1,0 +1,46 @@
+project:
+  type: website
+
+website:
+  title: "Matthew Hlina"
+  image: "/img/me.png"
+  favicon: "/img/favicon.png"
+  
+  navbar:
+    background: "#01998D"
+    left:
+      - text: "Personal Projects"
+        menu:
+          - text: Fertility
+            href: projects/fertility/index.qmd
+          - text: Wine
+            href: projects/wine/index.qmd
+          - text: NHL
+            href: projects/nhl/index.qmd
+            
+    right: 
+      - icon: linkedin
+        href: https://www.linkedin.com/in/matthew-hlina-1aa167275
+      - icon: mortarboard
+        aria-label: google scholar
+        href: https://scholar.google.com/citations?user=q6zxiHYAAAAJ&hl=en&oi=ao
+      - icon: envelope
+        aria-label: email
+        href: "mailto:hlina002@umn.edu"
+
+  search:
+    location: navbar
+    type: overlay
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    fig-cap-location: bottom
+
+execute: 
+  freeze: auto
+
+editor: visual
+
