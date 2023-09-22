@@ -1,0 +1,151 @@
+---
+title: "Examining Predictors of Wine Price"
+format: 
+  html:
+    fig-width: 12
+    fig-height: 9
+editor: visual
+---
+
+The literature has suggested that the price of wine is predictive of a wine's rating which attempts to quantify a wine's quality on a 100pt scale (Snipes & Taylor, 2014). Therefore, the relationship between wine rating and price was evaluated. The following scatter plot demonstrates this relationship for 200 wines made in seven geographic regions.
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: fig-scatter
+#| fig-cap: "Scatterplot of the relationship between 200 wine prices and their ratings."
+
+library(corrr)
+library(broom)
+library(gt)
+library(lmtest)
+library(patchwork)
+library(texreg)
+library(stargazer)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(scales)
+
+wine <- read_csv("wine.csv") #their analysis says model 3 had lowest AICc score
+
+ggplot(data = wine, aes(x = rating, y = price)) + 
+  geom_point() + 
+  theme_bw()+
+  geom_smooth(se = FALSE)+
+  xlab("Wine Rating")+
+  scale_y_continuous(
+    name = "Price (USD)",
+    labels = label_number(prefix = "$"))
+```
+
+This figure shows a non-linear relationship between wine rating and price. In order to re-express the data to meet the linearity assumption of regression, either the x (wine rating) or y-variable (price) must be transformed. In accordance with the Rule of the Bulge, we elected to log-transform wine price, which represents a downward power transformation of the y-variable, to create our first model, and then regressed it on wine rating. The equation for this model is shown below:
+
+$$
+\begin{split}
+\mathrm{Model~1}: \hat{\mathrm{ln(Price_i)}} &= -19.06 + 0.25(\mathrm{Rating}_i)
+\end{split}
+$$
+
+Two additional models were made to examine other possible predictors of price: one that includes the effects of whether or not a wine is made in California and another that includes both wine rating *and* whether or not a wine is made in California:
+
+$$
+\begin{split}
+\mathrm{Model~2}: \hat{\mathrm{ln(Price_i)}} &= 3.46 + 0.015(\mathrm{California}_i)
+\\[1em]
+\mathrm{Model~3}: \hat{\mathrm{ln(Price_i)}} &= -19.48 + 0.25(\mathrm{Rating}_i) + 0.16(\mathrm{California}_i)
+\end{split}
+$$
+
+Using ${r}^2$ values for comparison, we determined that Model 3 was the most appropriate model for the data. The following table provides a comparison of all models.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+wine = wine |>
+  mutate(
+    region_ca = if_else(region == "California", 1, 0))
+
+lm.1 = lm(log(price) ~ 1 + rating, data = wine)
+lm.2 = lm(log(price)~ 1 + region_ca, data = wine)
+lm.3 = lm(log(price) ~ 1 + rating +  region_ca, data = wine)
+
+# Load libraries for formatting
+#library(AICcmodavg)
+
+#Create table of model evidence
+# model_evidence = aictab(
+#   cand.set = list(lm.1, lm.2, lm.3), 
+#   modnames = c("Model 1", "Model 2", "Model 3")
+# )
+
+##################################################
+### Pretty printing tables of model evidence
+##################################################
+
+# Create data frame to format into table
+# tab_01 = model_evidence %>%
+#   data.frame() %>%
+#   select(-LL, -Cum.Wt)
+
+# Load libraries for formatting
+library(gt)
+
+labels <- c('Rating','Region = California (dummy)', 'Rating*CA')
+
+stargazer(lm.1, lm.2, lm.3, 
+          title = "Table 1. Unstandardized Coefficients & Confidence Intervals for a Series of OLS Regresison Models Fitted to Estimate Variation in Price of Wines",
+          align = TRUE, 
+          type = "text", 
+          covariate.labels = labels, 
+          dep.var.caption = "", 
+          dep.var.labels.include = FALSE, 
+          column.labels = c("Model 1", "Model 2", "Model 3"),
+          keep.stat = c("rsq", "ser"), 
+          #add.lines = list(c("AICc", round(AICc(lm.1), 2), round(AICc(lm.2), 2),round(AICc(lm.3), 2))),
+          df = FALSE, 
+          report=("vcs"), 
+          single.row = FALSE, 
+          star.char = "", 
+          notes = "", 
+          notes.label = "", 
+          notes.append = FALSE, 
+          ci = TRUE, 
+          model.numbers = FALSE
+)
+```
+
+In order to make a coherent, useful interpretation of Model 3, we back-transformed the data by exponentiating our equation by base-*e*. We then substituted Rating = 1 and California = 1 and solved:
+
+$$
+\begin{split}
+\hat{\mathrm{ln(Price_i)}} &= -19.48 + 0.25(\mathrm{Rating}_i) + 0.16(\mathrm{California}_i)
+\\[1em]
+\hat{\mathrm{Price_i}} &= e^{-19.48} \times e^{0.25(\mathrm{Rating}_i)} \times e^{0.16(\mathrm{California}_i)}
+\\[1em]
+\hat{\mathrm{Price_i}} &= e^{-19.48} \times e^{0.25(1)} \times e^{0.16(1)}
+\\[1em]
+\hat{\mathrm{Price_i}} &= (3.47 \times 10^{-9}) \times 1.28 \times 1.17
+\end{split}
+$$
+
+From this, we can conclude that on average, each one unit change in rating is associated with a 1.28-fold increase in price. We can also conclude that a wine being made in California is associated with a 1.17-fold increase in price. This causes the differential price between wines made in California and wines made elsewhere to increase as rating increases. The figure below demonstrates these findings.
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#| label: fig-fits
+#| fig-cap: "Best fits for wines from CA and not from CA, according to Model 3."
+
+ggplot(data = wine, aes(x=rating, y=price)) + 
+  geom_point(alpha = 0.2) + 
+  scale_color_manual(name = "Wine Regions",   breaks=c("California", "Not California"), values = c("California" = "red", "Not California" = "blue"))+
+  geom_function(fun = function(x){exp(-19.48)*exp(.25*x)*exp(.16)}, aes(color = "California")) + #CA
+  geom_function(fun = function(x){exp(-19.48)*exp(.25*x)}, aes(color = "Not California"))+  #not CA             
+  theme_bw()+
+  xlab("Rating")+
+  ylab("Price")
+```
