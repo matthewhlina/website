@@ -37,7 +37,10 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
+    toc-location: left
     fig-cap-location: bottom
+    link-external-newwindow: true
+    code-overflow: wrap
 
 execute: 
   freeze: auto
