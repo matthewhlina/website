@@ -5,6 +5,9 @@ format:
     fig-width: 12
     fig-height: 9
 editor: visual
+execute: 
+  echo: false
+code-tools: true
 ---
 
 ```{r}
