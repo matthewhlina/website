@@ -5,6 +5,7 @@ format:
     fig-width: 12
     fig-height: 9
 editor: visual
+code-tools: true
 ---
 
 This project assesses the longitudinal variation in cost of attending an NHL game from 2002-2014. We will utilize each team's fan cost index (FCI) for a particular a season, although there is no data from 2012 because the NHL experienced a lockout. FCI is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. Here is a figure displaying the relationship between FCI and years since 2002 for each team and an average growth trendline displayed in bold.
@@ -65,7 +66,7 @@ lmer.c = lmer(fci ~ 1 + I(c_year) + I(c_year^2) + (1 |team), data = nhl, REML = 
 label <- c('Team','Year', 'Year(Squared)')
 
 stargazer(lmer.a, lmer.b, lmer.c, 
-          title = "Table 1. Unstandardized Coefficients & Confidence Errors for a Series of LMER Models Fitted to Estimate FCI of NHL Games", 
+          title = "Table 1. Unstandardized Coefficients and Confidence Intervals for a Series of LMER Models Fitted to Estimate FCI of NHL Games", 
           align = TRUE, 
           type = "text", 
           covariate.labels = label, 
@@ -122,7 +123,3 @@ ggplot(data = nhl, aes(x = c_year, y = fci)) +
                      values=c('MN Wild' = 'green', 'Average' = 'red')) +
   ylab("FCI")
 ```
-
-
-
-
