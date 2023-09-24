@@ -1,5 +1,6 @@
 ---
 title: "Matthew Hlina"
+image: ./img/me.png
 about:
   template: jolla
   image-shape: round
