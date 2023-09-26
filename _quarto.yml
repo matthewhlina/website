@@ -4,26 +4,33 @@ project:
 website:
   title: "Matthew Hlina"
   image: "/img/me.png"
-  favicon: "/img/favicon.png"
   
   navbar:
     background: "#01998D"
     left:
-      - text: "Personal Projects"
+      - text: "Academic Projects"
         menu:
-          - text: Fertility
+          - text: Polynomial Effects
             href: projects/fertility/index.qmd
-          - text: Wine
+          - text: Logrithmic Transformations
             href: projects/wine/index.qmd
-          - text: NHL
+          - text: Logistic Regression
+            href: projects/ssm/index.qmd
+          - text: Unconditional Longitudinal Mixed-Effects Models
             href: projects/nhl/index.qmd
+      - text: "Research Experience"
+        href: research/index.qmd
             
     right: 
+      - text: "About"
+        href: about/index.qmd
       - icon: linkedin
         href: https://www.linkedin.com/in/matthew-hlina-1aa167275
       - icon: mortarboard
         aria-label: google scholar
         href: https://scholar.google.com/citations?user=q6zxiHYAAAAJ&hl=en&oi=ao
+      - icon: github
+        href: https://github.com/matthewhlina
       - icon: envelope
         aria-label: email
         href: "mailto:hlina002@umn.edu"
@@ -37,10 +44,8 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-    toc-location: left
     fig-cap-location: bottom
     link-external-newwindow: true
-    code-overflow: wrap
 
 execute: 
   freeze: auto
