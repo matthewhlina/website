@@ -1,14 +1,26 @@
 ---
-title: "Fan Cost Index of NHL Games"
+title: "Unconditional Longitiduinal Mixed-Effects Models"
 format: 
   html:
     fig-width: 12
     fig-height: 9
 editor: visual
+execute: 
+  echo: false
 code-tools: true
 ---
 
-This project assesses the longitudinal variation in cost of attending an NHL game from 2002-2014. We will utilize each team's fan cost index (FCI) for a particular a season, although there is no data from 2012 because the NHL experienced a lockout. FCI is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. Here is a figure displaying the relationship between FCI and years since 2002 for each team and an average growth trendline displayed in bold.
+## Fan Cost Index of Attending NHL Games
+
+[CSV](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv)
+
+[Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html)
+
+### Investigating the Relationship
+
+The Fan Cost Index (FCI) is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. 
+
+This project assessed the longitudinal variation in cost of attending an NHL game from 2002-2014 by using FCI to denote cost (no data from 2012 due to lockout). Here is a figure displaying trend lines for the relationship between FCI and year for each NHL team and an average growth trend line is displayed in bold.
 
 ```{r}
 #| message: false
@@ -47,7 +59,11 @@ ggplot(data = nhl, aes(x = year, y = fci))+
   )
 ```
 
-The average growth model appears to be positive and linear, although there may be evidence supporting a quadratic relationship in the data. We will consider three models in our analysis: a) an uncondiational random intercepts model; b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.
+The average growth trendline is positive and appears to be linear, although there may be evidence that suggests a quadratic relationship between FCI and year. 
+
+### Creating and Comparing Models
+
+Three models will be considered in this analysis: a) an uncondiational random intercepts model; b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.
 
 ```{r}
 #| message: false
@@ -89,13 +105,20 @@ stargazer(lmer.a, lmer.b, lmer.c,
           column.sep.width = "10pt")
 ```
 
-Model C has the lowest AICc, which means it has the most empirical support of any of the three. While both variation between and within teams exist, the variation between teams (58.50%) accounts for more variation than the variation within team (41.50%). In practical terms, this means that a team's FCI in 2002 (the y-intercept) explains more variation than the rate of change of a team's FCI (slope). Here is the equation for this model:
+Model C has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.
 
 $$
 \begin{split}
 \hat{\mathrm{FCI}_{i}} &= 244.82+ 5.21(\mathrm{Year-2002}_{ij}) + 0.41(\mathrm{Year-2002}_{ij})^2 +\mathrm{b_{0j}}
 \end{split}
 $$
+
+### Interpretting Model 3
+
+The variation between teams (58.50%) accounts for more variation than the variation within a team (41.50%). In practical terms, this means that a team's FCI in 2002 (the y-intercept) has a larger impact on the FCI of a given year than the rate of change in FCI of a team (the slope). 
+
+The predicted average FCI for all teams at the initial measurement occasion (in 2002) is 244.82.
+Each subsequent year is associated with an increase in FCI by at least 5.61 points. The effect of year on FCI increases over time.
 
 Additionally, here is a figure that presents our model as well as a trend line that represents the FCI for the Minnesota Wild NHL team.
 
