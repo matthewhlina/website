@@ -1,21 +1,14 @@
 ---
-title: "Matthew Hlina"
+title: "Welcome!"
 image: ./img/me.png
 about:
-  template: jolla
+  template: trestles
   image-shape: round
-  image-width: 35em
-
-mainfont: Calibri
-sansfont: Calibri
+  image-width: 20em
+toc: false
+fontsize: 1.2rem;
 ---
 
+## Purpose 
 
-
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```
+The purpose of this site is to a) demonstrate the quantitative skills that I have accrued through various **academic projects** and b) highlight my practical **research experience**. Hope you enjoy! 
