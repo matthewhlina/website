@@ -1,8 +1,10 @@
 {
-  "hash": "5fe15b410cbbc2de5db1a743a42c577a",
+  "hash": "fdd4198bf183474bedf3bcd3539a79c8",
   "result": {
-    "markdown": "---\ntitle: \"Matthew Hlina\"\nimage: ./img/me.png\nabout:\n  template: jolla\n  image-shape: round\n  image-width: 35em\n\nmainfont: Calibri\nsansfont: Calibri\n---\n\n\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Matthew Hlina\"\nimage: ./img/me.png\nabout:\n  template: jolla\n  image-shape: round\n  image-width: 35em\nformat:\n  html:\n    mainfont: Calibri\n    sansfont: Calibri\n---\n\n\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

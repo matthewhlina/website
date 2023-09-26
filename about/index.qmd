@@ -1,0 +1,27 @@
+---
+title: "About"
+format: html
+---
+
+
+::: {layout-ncol = 2 layout-valign = "center"} 
+![](img/presenting.JPG)
+
+![](img/nassm-conf-poster.jpg)
+:::
+
+I am a mixed methods researcher with my most recent experience at the University of Minnesota in the sport management program and [Global Institute for Responsible Sport Organizations](https://girso.umn.edu). I grew up in a modest home in the unincorporated town of South Range, Wisconsin and spent my first 18 years under the same roof. The isolation that comes with rural living helped to develop my creativity in work and play and my curiosity for the outside world.
+
+::: {layout-ncol = 2 layout-valign = "center"} 
+![](img/home.jpeg)
+
+![](img/family.JPG) 
+:::
+
+I always enjoyed going to school to learn and help my peers and have carried my interests in education and teaching throughout my experiences. Through academic, volunteer, and practical experiences, I have directed my energy and efforts towards improving the health and wellness of individuals, society, and the natural world. My interests have led to the development of skills in qualitative and quantitative research methods, including technical experience with the software programs R, Quarto, Qualtrics, and NVIVO and soft-skill such as public speaking, relationship-building, and teamwork. I am interested in continuing to utilize and grow these skills to contribute to solving real-world problems related to human, societal, and environmental health.
+
+::: {layout-ncol = 2 layout-valign = "center"} 
+![](img/friends.jpeg)
+
+![](img/nassm-sm-students.jpg) 
+:::
