@@ -11,4 +11,4 @@ fontsize: 1.2rem;
 
 ## Purpose 
 
-The purpose of this site is to a) demonstrate the quantitative skills that I have accrued through various **academic projects** and b) highlight my practical **research experience**. Hope you enjoy! 
+The purpose of this site is to a) demonstrate the quantitative skills that I have accrued through various **academic projects** and b) highlight my practical **research experience**. If you would like to connect for any reason, please email me at my UMN email which you will find located in the top right corner of the page. Thanks! 
