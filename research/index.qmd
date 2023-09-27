@@ -1,8 +1,6 @@
 ---
 title: "Research Experience"
-format:
-  html:
-    mainfont: Calibri
+format: html
 ---
 
 ## Current
@@ -11,18 +9,14 @@ Check out our research on using sport to do good at the [Global Institute for Re
 
 ## Master's Thesis
 
-Hlina, M. (exp. 2023). *Understanding professional sport CSR communication with opinion leader stakeholders*. 
+Hlina, M. (exp. 2023). *Understanding professional sport CSR communication with opinion leader stakeholders*.
 
 ## Other Research Experience
 
-Schyvinck, C., Jonas, M., De Cock, M., Hlina, M., Zeimers, G., & Kihl, L. A. (2023). *Measuring is knowing: Understanding the process of externally measuring professional sport organizations’ corporate social performance*. 
+Schyvinck, C., Jonas, M., De Cock, M., Hlina, M., Zeimers, G., & Kihl, L. A. (2023). *Measuring is knowing: Understanding the process of externally measuring professional sport organizations' corporate social performance*.
 
 Jonas, M., Son, J. H., Hlina, M., & Lu, L (Advisor). (2023). *Examining network governance strategies of a sport-for-development organization: The case of streetfootballworld*.
 
 Motoyama, S., Warren, C., and Hlina, M. (2023). *Analyzing perceptions of constraints to spectator attendance in minor league baseball: A multivariate analysis of group differences across levels of fan identification*.
 
 Kihl, L. A., Schyvinck, C., Zeimers, G., Jonas, M., De Cock, M., & Hlina, M. (2022). *A global assessment of professional sport organizations' CSR performance: A Delphi study*.
-
-
-
-
