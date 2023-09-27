@@ -15,7 +15,7 @@ website:
           - text: Logrithmic Transformations
             href: projects/wine/index.qmd
           - text: Logistic Regression
-            href: projects/ssm/index.qmd
+            href: projects/same-sex-marriage/index.qmd
           - text: Unconditional Longitudinal Mixed-Effects Models
             href: projects/nhl/index.qmd
       - text: "Research Experience"
