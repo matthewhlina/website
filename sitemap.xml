@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/matthewhlina/website/research/index.html</loc>
+    <lastmod>2023-09-27T01:48:26.221Z</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/matthewhlina/website/projects/wine/index.html</loc>
-    <lastmod>2023-09-24T20:09:47.351Z</lastmod>
+    <lastmod>2023-09-27T01:48:25.017Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/matthewhlina/website/projects/fertility/index.html</loc>
-    <lastmod>2023-09-24T20:09:46.483Z</lastmod>
+    <lastmod>2023-09-27T01:48:10.664Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/matthewhlina/website/index.html</loc>
-    <lastmod>2023-09-24T20:09:45.551Z</lastmod>
+    <lastmod>2023-09-27T01:48:09.520Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/matthewhlina/website/projects/nhl/index.html</loc>
-    <lastmod>2023-09-24T20:09:46.995Z</lastmod>
+    <lastmod>2023-09-27T01:48:18.648Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/about/index.html</loc>
+    <lastmod>2023-09-27T01:48:25.413Z</lastmod>
   </url>
 </urlset>
