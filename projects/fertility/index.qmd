@@ -27,7 +27,6 @@ fertility <- read_csv("fertility.csv")
 
 [Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/fertility.html)
 
-
 ### Linear Effect
 
 To better understand the causes of variation in infant mortality rates across countries, the number of infant deaths before the age of one per 1000 live births (infant mortality rate) was linearly regressed on the average number of years of formal education for a woman (female education level) for 124 countries ($\mathrm{r}^2 = 0.606$). We controlled for GNI in this regression by including a dummy variable that assigned a 1 to countries with a high-gross national income (GNI) and a 0 to those with a low GNI. The figure and equation below show the model developed from this regression:
@@ -45,7 +44,7 @@ To better understand the causes of variation in infant mortality rates across co
 #create scatterplot
 ggplot(fertility, aes(x = educ_female, y = infant_mortality)) + 
   geom_point(alpha = 0.2) + 
-  theme_bw()+
+  theme_bw() +
   geom_abline(aes(intercept = 63.37, slope = -3.6, color = 'Low GNI'), linetype = 'dashed') + 
   geom_abline(aes(intercept = 63.37 - 17.58, slope = -3.6 , color = 'High GNI'), linetype = 'solid') +
   xlab("Female Eduation Level (years)") +
@@ -78,9 +77,9 @@ An investigation of the standardized residuals for this linear model suggest tha
 #| out-height: 100%
 
 #create scatterplot
-ggplot(fertility, aes(x=educ_female, y=infant_mortality)) + 
+ggplot(fertility, aes(x = educ_female, y = infant_mortality)) + 
   geom_point(alpha = 0.2) + 
-  theme_bw()+
+  theme_bw() +
   scale_color_manual(name = "Gross National Income Level (GNI)", values = c("Upper GNI" = "red", "Upper/Middle GNI" = "orange", "Low/Middle GNI" = "green", "Low GNI" = "blue"), breaks = c("Upper GNI", "Upper/Middle GNI", "Low/Middle GNI", "Low GNI"))+
   geom_function(aes(color="Upper GNI"),
     fun = function(x) {(75.05 -33.37)-6.84*x + 0.32 * x^2}
