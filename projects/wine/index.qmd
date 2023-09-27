@@ -43,15 +43,15 @@ wine <- read_csv("wine.csv") #their analysis says model 3 had lowest AICc score
 
 ggplot(data = wine, aes(x = rating, y = price)) + 
   geom_point() + 
-  theme_bw()+
+  theme_bw() +
   geom_smooth(se = FALSE)+
-  xlab("Rating")+
+  xlab("Rating") +
   scale_y_continuous(
     name = "Price (USD)",
     labels = label_number(prefix = "$"))
 ```
 
-This figure shows a non-linear relationship between wine rating and price. In order to re-express the data to meet the linearity assumption of regression analyses, either the x (rating) or y-variable (price) must be transformed. 
+This figure shows a non-linear relationship between wine rating and price. In order to re-express the data to meet the linearity assumption of regression analyses, either the x (rating) or y-variable (price) must be transformed.
 
 ### Creating Models
 
@@ -74,19 +74,20 @@ $$
 $$
 
 ### Comparing Models
+
 Using AICc and ${r}^2$ values to compare models, we determined that Model 3 was the most appropriate model for the data. The following table shows this comparison.
 
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
-wine = wine |>
+wine <- wine |>
   mutate(
     region_ca = if_else(region == "California", 1, 0))
 
-lm.1 = lm(log(price) ~ 1 + rating, data = wine)
-lm.2 = lm(log(price)~ 1 + region_ca, data = wine)
-lm.3 = lm(log(price) ~ 1 + rating +  region_ca, data = wine)
+lm.1 <- lm(log(price) ~ 1 + rating, data = wine)
+lm.2 <- lm(log(price) ~ 1 + region_ca, data = wine)
+lm.3 <- lm(log(price) ~ 1 + rating +  region_ca, data = wine)
 
 # Load libraries for formatting
 #library(AICcmodavg)
@@ -105,9 +106,6 @@ lm.3 = lm(log(price) ~ 1 + rating +  region_ca, data = wine)
 # tab_01 = model_evidence %>%
 #   data.frame() %>%
 #   select(-LL, -Cum.Wt)
-
-# Load libraries for formatting
-library(gt)
 
 labels <- c('Rating','Region = California (dummy)', 'Rating*CA')
 
@@ -158,12 +156,15 @@ Drawing from this simplified model, we can conclude that on average, each **one 
 #| label: fig-fits
 #| fig-cap: "Best fits for wines from CA and not from CA, according to Model 3."
 
-ggplot(data = wine, aes(x=rating, y=price)) + 
+ggplot(data = wine, aes(x = rating, y = price)) + 
   geom_point(alpha = 0.2) + 
-  scale_color_manual(name = "Wine Regions",   breaks=c("California", "Not California"), values = c("California" = "red", "Not California" = "blue"))+
-  geom_function(fun = function(x){exp(-19.48)*exp(.25*x)*exp(.16)}, aes(color = "California")) + #CA
-  geom_function(fun = function(x){exp(-19.48)*exp(.25*x)}, aes(color = "Not California"))+  #not CA             
-  theme_bw()+
-  xlab("Rating")+
+  scale_color_manual(name = "Wine Regions", breaks = c("California", "Not California"), values = c("California" = "red", "Not California" = "blue")) +
+  geom_function(fun = function(x){exp(-19.48)*exp(0.25*x)*exp(0.16)}, aes(color = "California")) + #CA
+  geom_function(fun = function(x){exp(-19.48)*exp(0.25*x)}, aes(color = "Not California")) +  #not CA             
+  theme_bw(base_size = 10) +
+  theme(
+    legend.position = c(0.15, 0.9)
+  ) +
+  xlab("Rating") +
   ylab("Price")
 ```
