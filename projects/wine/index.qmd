@@ -27,23 +27,29 @@ The literature has suggested that the price of wine is predictive of a wine's ra
 #| label: fig-scatter
 #| fig-cap: "Scatterplot of the relationship between 200 wine prices and their ratings."
 
-library(corrr)
 library(broom)
+library(corrr)
+library(ggtext)
 library(gt)
+library(kableExtra)
+library(knitr)
 library(lmtest)
 library(patchwork)
-library(texreg)
-library(stargazer)
-library(tidyverse)
-library(knitr)
-library(kableExtra)
 library(scales)
+library(stargazer)
+library(texreg)
+library(tidyverse)
 
 wine <- read_csv("wine.csv") #their analysis says model 3 had lowest AICc score
 
 ggplot(data = wine, aes(x = rating, y = price)) + 
-  geom_point() + 
-  theme_bw() +
+  geom_point(alpha = 0.2, size = 3) + 
+  theme_bw(base_size = 18) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.x = element_markdown(),
+    axis.title.y = element_markdown()
+  ) +
   geom_smooth(se = FALSE)+
   xlab("Rating") +
   scale_y_continuous(
@@ -75,7 +81,7 @@ $$
 
 ### Comparing Models
 
-Using AICc and ${r}^2$ values to compare models, we determined that Model 3 was the most appropriate model for the data. The following table shows this comparison.
+Using AICc and ${R}^2$ values to compare models, we determined that Model 3 was the most appropriate model for the data. The following table shows this comparison.
 
 ```{r}
 #| echo: false
@@ -107,7 +113,7 @@ lm.3 <- lm(log(price) ~ 1 + rating +  region_ca, data = wine)
 #   data.frame() %>%
 #   select(-LL, -Cum.Wt)
 
-labels <- c('Rating','Region = California (dummy)', 'Rating*CA')
+labels <- c('Rating','Region = California (dummy)', 'Intercept')
 
 stargazer(lm.1, lm.2, lm.3, 
           title = "Table 1. Unstandardized Coefficients & Confidence Intervals for a Series of OLS Regresison Models Fitted to Estimate Variation in Price of Wines",
@@ -133,7 +139,7 @@ stargazer(lm.1, lm.2, lm.3,
 
 ### Interpretting Model 3
 
-In order to make a coherent, useful interpretation of Model 3, we back-transformed the data by exponentiating our equation by base-*e*. We then substituted Rating = 1, California = 1, and simplified the equation. The steps of this process are shown below.
+In order to make a coherent, useful interpretation of Model 3, it is necessary to back-transform the model by exponentiating our equation by base-*e*. Rating = 1 and California = 1 were substituted into the equation to make sense of a one-unit change in each, and the equation was then simplified. The steps of this process are shown below.
 
 $$
 \begin{split}
@@ -157,12 +163,15 @@ Drawing from this simplified model, we can conclude that on average, each **one 
 #| fig-cap: "Best fits for wines from CA and not from CA, according to Model 3."
 
 ggplot(data = wine, aes(x = rating, y = price)) + 
-  geom_point(alpha = 0.2) + 
+  geom_point(alpha = 0.2, size = 3) + 
   scale_color_manual(name = "Wine Regions", breaks = c("California", "Not California"), values = c("California" = "red", "Not California" = "blue")) +
-  geom_function(fun = function(x){exp(-19.48)*exp(0.25*x)*exp(0.16)}, aes(color = "California")) + #CA
-  geom_function(fun = function(x){exp(-19.48)*exp(0.25*x)}, aes(color = "Not California")) +  #not CA             
-  theme_bw(base_size = 10) +
+  geom_function(fun = function(x) {exp(-19.48) * exp(0.25 * x) * exp(0.16)}, aes(color = "California")) + #CA
+  geom_function(fun = function(x) {exp(-19.48) * exp(0.25 * x)}, aes(color = "Not California")) +  #not CA             
+  theme_bw(base_size = 18) +
   theme(
+    panel.grid = element_blank(),
+    axis.title.x =  element_markdown(),
+    axis.title.y =  element_markdown(),
     legend.position = c(0.15, 0.9)
   ) +
   xlab("Rating") +
