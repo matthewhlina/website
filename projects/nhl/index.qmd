@@ -29,23 +29,24 @@ This project assessed the longitudinal variation in cost of attending an NHL gam
 #| label: fig-spaghetti
 #| fig-cap: "Cost of attending a NHL game (FCI) over time for each NHL team. The black line represents the average cost of attending NHL games."
 
-library(corrr)
+#library(AICcmodavg)
 library(broom)
 library(broom.mixed)
+library(corrr)
+library(ggtext)
 library(gt)
+library(kableExtra)
+library(knitr)
 library(lme4)
 library(lmtest)
 library(patchwork)
-library(texreg)
-library(stargazer)
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-#library(AICcmodavg)
 library(performance)
+library(stargazer)
+library(texreg)
+library(tidyverse)
 
 nhl <- read_csv("nhl.csv") 
-nhl = nhl |> 
+nhl <- nhl |> 
   mutate(c_year = year - 2002)
 
 ggplot(data = nhl, aes(x = year, y = fci))+
@@ -71,17 +72,18 @@ Three models will be considered in this analysis: a) an uncondiational random in
 #| warning: false
 
 # Fit unconditional random-intercepts models
-lmer.a = lmer(fci ~ 1 + (1 | team), data = nhl, REML = FALSE)
+lmer.1 <- lmer(fci ~ 1 + (1 | team), data = nhl, REML = FALSE)
 
 #Fit unconditional growth model
-lmer.b = lmer(fci ~ 1 + I(c_year) + (1 |team), data = nhl, REML = FALSE) 
+lmer.2 <- lmer(fci ~ 1 + I(c_year) + (1 |team), data = nhl, REML = FALSE) 
 
 # Fit unconditional quadratic growth model
-lmer.c = lmer(fci ~ 1 + I(c_year) + I(c_year^2) + (1 |team), data = nhl, REML = FALSE) 
+lmer.3 <- lmer(fci ~ 1 + I(c_year) + I(c_year^2) + (1 |team), data = nhl, REML = FALSE)
+
 
 label <- c('Team','Year', 'Year(Squared)')
 
-stargazer(lmer.a, lmer.b, lmer.c, 
+stargazer(lmer.1, lmer.2, lmer.3, 
           title = "Table 1. Unstandardized Coefficients and Confidence Intervals for a Series of LMER Models Fitted to Estimate FCI of NHL Games", 
           align = TRUE, 
           type = "text", 
@@ -92,7 +94,8 @@ stargazer(lmer.a, lmer.b, lmer.c,
           keep.stat = c("rsq", "ser"), 
           add.lines = list(c("Level-2 Variance (Intercept)", 2428.05, 2398.24, 2385.28), 
                       c("Level-1 Variance", 3478.38, 1727.95, 1691.46), 
-                      c("AICc", 3034.34, 2866.48, 2863.25)),
+                      c("AICc", 3034.34, 2866.48, 2863.25)
+                      ),
           df = FALSE, 
           report=("vcs"), 
           single.row = FALSE, 
@@ -132,11 +135,11 @@ Additionally, here is a figure that presents our model as well as a trend line t
 ggplot(data = nhl, aes(x = c_year, y = fci)) +
   geom_point(alpha = 0.4) +  #Add individual profiles
   geom_function(
-    fun = function(x) {244.82+5.21*(x) +0.41*(x^2)},
+    fun = function(x) {244.82 + 5.21 * (x) + 0.41 * (x^2)},
     linetype = "solid",
     aes(color = 'Average')) +
   geom_function(
-    fun = function(x) {267.58+5.21*(x) +0.41*(x^2)},
+    fun = function(x) {267.58 + 5.21 * (x) + 0.41 * (x^2)},
     linetype = "solid",
     aes(color = 'MN Wild')) +
   theme_light() +
