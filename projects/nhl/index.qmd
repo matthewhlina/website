@@ -52,7 +52,12 @@ nhl <- nhl |>
 ggplot(data = nhl, aes(x = year, y = fci))+
   geom_line(aes(group = team), alpha = 0.3) +          #Add individual profiles
   stat_summary(fun = mean, geom = "line", size = 2, group = 1) + #Add mean profile line
-  theme_light() +
+  theme_bw(base_size = 17) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.x =  element_markdown(),
+    axis.title.y =  element_markdown()
+  ) +
   ylab("Fan Cost Index (FCI)") +
   scale_x_continuous(
     name = "Year",
@@ -142,7 +147,13 @@ ggplot(data = nhl, aes(x = c_year, y = fci)) +
     fun = function(x) {267.58 + 5.21 * (x) + 0.41 * (x^2)},
     linetype = "solid",
     aes(color = 'MN Wild')) +
-  theme_light() +
+  theme_bw(base_size = 17) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title.x =  element_markdown(),
+    axis.title.y =  element_markdown(),
+    legend.position = c(0.2, 0.85)
+  ) +
   xlab("Year(s) Since 2002") +
   scale_color_manual(name='Hockey Teams',
                      breaks=c('MN Wild', 'Average'),
