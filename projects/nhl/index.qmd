@@ -12,15 +12,15 @@ code-tools: true
 
 ## Fan Cost Index of Attending NHL Games
 
+This project assessed the longitudinal variation in the cost of attending an NHL game from 2002-2014 by using the metric Fan Cost Index (FCI) (no data from 2012 due to lockout). FCI is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. Data was collected from all 30 teams that were in the NHL during this time period.
+
 [CSV](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv)
 
 [Codebook](http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html)
 
 ### Investigating the Relationship
 
-The Fan Cost Index (FCI) is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. 
-
-This project assessed the longitudinal variation in cost of attending an NHL game from 2002-2014 by using FCI to denote cost (no data from 2012 due to lockout). Here is a figure displaying trend lines for the relationship between FCI and year for each NHL team and an average growth trend line is displayed in bold.
+A spaghetti plot was created to understand how the NHL and each team's FCI has changed from the 2002 to 2014. Individuals teams are represented by thin, gray lines, while the average growth trend line for the entire NHL is displayed in bold.
 
 ```{r}
 #| message: false
@@ -65,11 +65,11 @@ ggplot(data = nhl, aes(x = year, y = fci))+
   )
 ```
 
-The average growth trendline is positive and appears to be linear, although there may be evidence that suggests a quadratic relationship between FCI and year. 
+The average growth trend line for the NHL is positive and appears to be linear, although there may be evidence that suggests there is a quadratic relationship between FCI and year. 
 
 ### Creating and Comparing Models
 
-Three models will be considered in this analysis: a) an uncondiational random intercepts model; b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.
+Three mixed-effects models were considered in this analysis: a) an unconditional random intercepts model (to get a baseline measure of the unaccounted for variation); b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.
 
 ```{r}
 #| message: false
@@ -95,7 +95,7 @@ stargazer(lmer.1, lmer.2, lmer.3,
           covariate.labels = label, 
           dep.var.caption = "", 
           dep.var.labels.include = FALSE, 
-          column.labels = c("Model A", "Model B", "Model C"),
+          column.labels = c("Model 1", "Model 2", "Model 3"),
           keep.stat = c("rsq", "ser"), 
           add.lines = list(c("Level-2 Variance (Intercept)", 2428.05, 2398.24, 2385.28), 
                       c("Level-1 Variance", 3478.38, 1727.95, 1691.46), 
@@ -113,7 +113,7 @@ stargazer(lmer.1, lmer.2, lmer.3,
           column.sep.width = "10pt")
 ```
 
-Model C has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.
+Model 3 has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.
 
 $$
 \begin{split}
