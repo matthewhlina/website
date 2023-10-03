@@ -188,8 +188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#variation-in-infant-mortality-rates-across-countries" id="toc-variation-in-infant-mortality-rates-across-countries" class="nav-link active" data-scroll-target="#variation-in-infant-mortality-rates-across-countries">Variation in Infant Mortality Rates Across Countries</a>
   <ul class="collapse">
-  <li><a href="#linear-effect" id="toc-linear-effect" class="nav-link" data-scroll-target="#linear-effect">Linear Effect</a></li>
-  <li><a href="#quadratic-effect" id="toc-quadratic-effect" class="nav-link" data-scroll-target="#quadratic-effect">Quadratic Effect</a></li>
+  <li><a href="#investigating-a-linear-effect-of-female-education-level" id="toc-investigating-a-linear-effect-of-female-education-level" class="nav-link" data-scroll-target="#investigating-a-linear-effect-of-female-education-level">Investigating a Linear Effect of Female Education Level</a></li>
+  <li><a href="#investigating-a-quadratic-effect-of-female-education-level" id="toc-investigating-a-quadratic-effect-of-female-education-level" class="nav-link" data-scroll-target="#investigating-a-quadratic-effect-of-female-education-level">Investigating a Quadratic Effect of Female Education Level</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,8 +218,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="variation-in-infant-mortality-rates-across-countries">Variation in Infant Mortality Rates Across Countries</h2>
 <p><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/fertility.csv">CSV</a></p>
 <p><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/fertility.html">Codebook</a></p>
-<section id="linear-effect" class="level3">
-<h3 class="anchored" data-anchor-id="linear-effect">Linear Effect</h3>
+<section id="investigating-a-linear-effect-of-female-education-level" class="level3">
+<h3 class="anchored" data-anchor-id="investigating-a-linear-effect-of-female-education-level">Investigating a Linear Effect of Female Education Level</h3>
 <p>To better understand the causes of variation in infant mortality rates across countries, the number of infant deaths before the age of one per 1000 live births (infant mortality rate) was linearly regressed on the average number of years of formal education for a woman (female education level) for 124 countries (<span class="math inline">\(\mathrm{R}^2 = 0.606\)</span>). We controlled for GNI in this regression by including a dummy variable that assigned a 1 to countries with a high-gross national income (GNI) and a 0 to those with a low GNI. The figure and equation below show the model developed from this regression:</p>
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
@@ -238,9 +238,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 \]</span></p>
 <p>These results suggest that a one-unit change in female education level (or an additional year of formal education) is associated with a decreased infant mortality rate by 3.60 (or 3.60 less infant deaths before their first birthday, per 1000 live births). It also suggests that countries with a high GNI have a lower infant mortality rate by 17.58.</p>
 </section>
-<section id="quadratic-effect" class="level3">
-<h3 class="anchored" data-anchor-id="quadratic-effect">Quadratic Effect</h3>
-<p>An investigation of the standardized residuals for this linear model suggest that a linear model may not accurately represent the data and that a model including a quadratic effect of female education may be more appropriate. This new model regressed, controlling for each GNI level. This model was found to better represent the data (<span class="math inline">\(\mathrm{R}^2 = 0.711\)</span>) than the linear model (<span class="math inline">\(\mathrm{R}^2 = 0.606\)</span>). Again, the equation and a figure for this model are provided below.</p>
+<section id="investigating-a-quadratic-effect-of-female-education-level" class="level3">
+<h3 class="anchored" data-anchor-id="investigating-a-quadratic-effect-of-female-education-level">Investigating a Quadratic Effect of Female Education Level</h3>
+<p>An investigation of the standardized residuals for this linear model suggest that a linear model may not accurately represent the data and that a model including a quadratic effect of female education may be more appropriate as well as one that segments GNI into four levels. This new model was regressed, controlling for each GNI and was found to better represent the data (<span class="math inline">\(\mathrm{R}^2 = 0.711\)</span>) than the linear model (<span class="math inline">\(\mathrm{R}^2 = 0.606\)</span>). Again, the equation and a figure for this model are provided below.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="fig-quadratics" class="quarto-figure quarto-figure-left anchored">
@@ -257,8 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 &amp;\quad - 33.37(\mathrm{Upper~GNI}_i) - 24.57(\mathrm{Upper/Middle~GNI}_i)  - 9.91(\mathrm{Low/Middle~GNI}_i)
 \end{align}
 \]</span></p>
-<p>According to this model, female education has an effect on infant mortality rate, controlling for GNI level. In this model, the effect of female education on infant mortality decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages but its effect diminishes.</p>
-<p>Countries with high levels of GNI are associated with a lower infant mortality rate, similar to findings from the linear model.</p>
+<p>Like in the linear model, countries with high levels of GNI are associated with a lower infant mortality rate and female education has a negative effect on infant mortality rate, controlling for GNI. However, while the negative effect of female education level remains the same across all levels of female education in the linear model, in the quadratic model, this effect decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages but its effect diminishes.</p>
 
 
 <!-- -->
@@ -595,7 +594,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Codebook</span><span class="co">](http://zief0002.github.io/bespectacled-antelope/codebooks/fertility.html)</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear Effect</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Investigating a Linear Effect of Female Education Level</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>To better understand the causes of variation in infant mortality rates across countries, the number of infant deaths before the age of one per 1000 live births (infant mortality rate) was linearly regressed on the average number of years of formal education for a woman (female education level) for 124 countries ($\mathrm{R}^2 = 0.606$). We controlled for GNI in this regression by including a dummy variable that assigned a 1 to countries with a high-gross national income (GNI) and a 0 to those with a low GNI. The figure and equation below show the model developed from this regression:</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
@@ -636,9 +635,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>These results suggest that a one-unit change in female education level (or an additional year of formal education) is associated with a decreased infant mortality rate by 3.60 (or 3.60 less infant deaths before their first birthday, per 1000 live births). It also suggests that countries with a high GNI have a lower infant mortality rate by 17.58.</span>
 <span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quadratic Effect</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Investigating a Quadratic Effect of Female Education Level</span></span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>An investigation of the standardized residuals for this linear model suggest that a linear model may not accurately represent the data and that a model including a quadratic effect of female education may be more appropriate. This new model regressed, controlling for each GNI level. This model was found to better represent the data ($\mathrm{R}^2 = 0.711$) than the linear model ($\mathrm{R}^2 = 0.606$). Again, the equation and a figure for this model are provided below.</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>An investigation of the standardized residuals for this linear model suggest that a linear model may not accurately represent the data and that a model including a quadratic effect of female education may be more appropriate as well as one that segments GNI into four levels. This new model was regressed, controlling for each GNI and was found to better represent the data ($\mathrm{R}^2 = 0.711$) than the linear model ($\mathrm{R}^2 = 0.606$). Again, the equation and a figure for this model are provided below.</span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -687,9 +686,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>According to this model, female education has an effect on infant mortality rate, controlling for GNI level. In this model, the effect of female education on infant mortality decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages but its effect diminishes.</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>Countries with high levels of GNI are associated with a lower infant mortality rate, similar to findings from the linear model.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>Like in the linear model, countries with high levels of GNI are associated with a lower infant mortality rate and female education has a negative effect on infant mortality rate, controlling for GNI. However, while the negative effect of female education level remains the same across all levels of female education in the linear model, in the quadratic model, this effect decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages but its effect diminishes.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

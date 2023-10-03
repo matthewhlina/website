@@ -217,12 +217,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="fan-cost-index-of-attending-nhl-games" class="level2">
 <h2 class="anchored" data-anchor-id="fan-cost-index-of-attending-nhl-games">Fan Cost Index of Attending NHL Games</h2>
+<p>This project assessed the longitudinal variation in the cost of attending an NHL game from 2002-2014 by using the metric Fan Cost Index (FCI) (no data from 2012 due to lockout). FCI is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. Data was collected from all 30 teams that were in the NHL during this time period.</p>
 <p><a href="https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv">CSV</a></p>
 <p><a href="http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html">Codebook</a></p>
 <section id="investigating-the-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="investigating-the-relationship">Investigating the Relationship</h3>
-<p>The Fan Cost Index (FCI) is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season.</p>
-<p>This project assessed the longitudinal variation in cost of attending an NHL game from 2002-2014 by using FCI to denote cost (no data from 2012 due to lockout). Here is a figure displaying trend lines for the relationship between FCI and year for each NHL team and an average growth trend line is displayed in bold.</p>
+<p>A spaghetti plot was created to understand how the NHL and each team’s FCI has changed from the 2002 to 2014. Individuals teams are represented by thin, gray lines, while the average growth trend line for the entire NHL is displayed in bold.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-spaghetti" class="quarto-figure quarto-figure-center anchored">
@@ -233,17 +233,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The average growth trendline is positive and appears to be linear, although there may be evidence that suggests a quadratic relationship between FCI and year.</p>
+<p>The average growth trend line for the NHL is positive and appears to be linear, although there may be evidence that suggests there is a quadratic relationship between FCI and year.</p>
 </section>
 <section id="creating-and-comparing-models" class="level3">
 <h3 class="anchored" data-anchor-id="creating-and-comparing-models">Creating and Comparing Models</h3>
-<p>Three models will be considered in this analysis: a) an uncondiational random intercepts model; b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.</p>
+<p>Three mixed-effects models were considered in this analysis: a) an unconditional random intercepts model (to get a baseline measure of the unaccounted for variation); b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Table 1. Unstandardized Coefficients and Confidence Intervals for a Series of LMER Models Fitted to Estimate FCI of NHL Games
 =====================================================================================
-                                  Model A            Model B            Model C      
+                                  Model 1            Model 2            Model 3      
 Team                                                  10.138             5.205       
                                                  (8.867, 11.408)     (0.847, 9.564)  
                                                                                      
@@ -261,7 +261,7 @@ AICc                              3034.34            2866.48            2863.25
                                                                                      </code></pre>
 </div>
 </div>
-<p>Model C has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.</p>
+<p>Model 3 has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.</p>
 <p><span class="math display">\[
 \begin{split}
 \hat{\mathrm{FCI}_{i}} &amp;= 244.82+ 5.21(\mathrm{Year-2002}_{ij}) + 0.41(\mathrm{Year-2002}_{ij})^2 +\mathrm{b_{0j}}
@@ -603,15 +603,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fan Cost Index of Attending NHL Games</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">CSV</span><span class="co">](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>This project assessed the longitudinal variation in the cost of attending an NHL game from 2002-2014 by using the metric Fan Cost Index (FCI) (no data from 2012 due to lockout). FCI is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. Data was collected from all 30 teams that were in the NHL during this time period.</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Codebook</span><span class="co">](http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">CSV</span><span class="co">](https://raw.githubusercontent.com/zief0002/bespectacled-antelope/main/data/nhl.csv)</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Investigating the Relationship</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Codebook</span><span class="co">](http://zief0002.github.io/bespectacled-antelope/codebooks/nhl.html)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>The Fan Cost Index (FCI) is an index used to determine the cost of attendance to a sporting event for a family of four. It is calculated by summing the prices of four average-price tickets, two small draft beers, four small soft drinks, four regular-size hot dogs, parking for one car, two game programs, and two least-expensive, adult-size adjustable caps, for a season. </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Investigating the Relationship</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>This project assessed the longitudinal variation in cost of attending an NHL game from 2002-2014 by using FCI to denote cost (no data from 2012 due to lockout). Here is a figure displaying trend lines for the relationship between FCI and year for each NHL team and an average growth trend line is displayed in bold.</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>A spaghetti plot was created to understand how the NHL and each team's FCI has changed from the 2002 to 2014. Individuals teams are represented by thin, gray lines, while the average growth trend line for the entire NHL is displayed in bold.</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
@@ -656,11 +656,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>The average growth trendline is positive and appears to be linear, although there may be evidence that suggests a quadratic relationship between FCI and year. </span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>The average growth trend line for the NHL is positive and appears to be linear, although there may be evidence that suggests there is a quadratic relationship between FCI and year. </span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creating and Comparing Models</span></span>
 <span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>Three models will be considered in this analysis: a) an uncondiational random intercepts model; b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>Three mixed-effects models were considered in this analysis: a) an unconditional random intercepts model (to get a baseline measure of the unaccounted for variation); b) an unconditional linear growth model; and c) an unconditional quadratic growth model. Here is a table of the unstandardized coefficients and standard errors for these models.</span>
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
@@ -686,7 +686,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>          <span class="at">covariate.labels =</span> label, </span>
 <span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.caption =</span> <span class="st">""</span>, </span>
 <span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>          <span class="at">dep.var.labels.include =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"Model A"</span>, <span class="st">"Model B"</span>, <span class="st">"Model C"</span>),</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>, <span class="st">"Model 3"</span>),</span>
 <span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>          <span class="at">keep.stat =</span> <span class="fu">c</span>(<span class="st">"rsq"</span>, <span class="st">"ser"</span>), </span>
 <span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>          <span class="at">add.lines =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"Level-2 Variance (Intercept)"</span>, <span class="fl">2428.05</span>, <span class="fl">2398.24</span>, <span class="fl">2385.28</span>), </span>
 <span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="st">"Level-1 Variance"</span>, <span class="fl">3478.38</span>, <span class="fl">1727.95</span>, <span class="fl">1691.46</span>), </span>
@@ -704,7 +704,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.sep.width =</span> <span class="st">"10pt"</span>)</span>
 <span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>Model C has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>Model 3 has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.</span>
 <span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>\begin{split}</span>
