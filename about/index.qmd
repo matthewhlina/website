@@ -27,3 +27,5 @@ I am a mixed methods researcher with my most recent experience at the University
 ![](img/friends.jpeg)
 :::
 
+Special thanks to [Professor Andy Zieffler](https://edpsych.umn.edu/andrew-zieffler) and [Dr. Benjamin Hlina](https://benjaminhlina.com) for their contributions to this website.
+
