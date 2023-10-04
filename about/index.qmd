@@ -17,49 +17,13 @@ format: html
 
 :::
 
-I am a mixed methods researcher with my most recent experience at the University of Minnesota in the sport management program and [Global Institute for Responsible Sport Organizations](https://girso.umn.edu). I grew up in a modest home in the unincorporated town of South Range, Wisconsin and spent my first 18 years under the same roof. My family enjoyed playing sports and games, spending time in nature, and traveling, and these activities are still some of my most important hobbies.
-
-::: columns
-
-::: {.column width="25%"}
-:::
-
-::: {.column width="50%"}
-
-![](img/home.jpeg){fig-align="center"}
-:::
-
-::: {.column width="25%"}
-:::
-
-:::
-
-I was raised to value education, diversity, and inclusion and to care for others as much as myself. I have always taken these values seriously, especially caring for others. The way I see it, caring for others has a lot to do with caring for their health and wellness. Therefore, I've sought out academic, volunteer, and work experiences that have all had something to do with human, social, or environmental health, and sometimes a blend of two or three together. For example, being an environmental education teacher at a youth summer camp was all about promoting environmental health while providing an opportunity for children to make friends, feel included, and exercise in the outdoors. Meanwhile, my work at Nalco Water: An Ecolab Company contributed to maintaining public safety by treating for and removing bacteria that causes life-threatening pneumonia from municipal and industrial water sources. 
-
-::: columns
-
-::: {.column width="25%"}
-:::
-
-::: {.column width="50%"}
-
-![](img/nassm-conf-poster.jpg){fig-align="center"}
-:::
-
-::: {.column width="25%"}
-:::
-
-:::
-
-All my experiences have led to the development of soft and hard skills in qualitative and quantitative research methods, including technical experience with the software programs R, Quarto, Qualtrics, and NVIVO, and soft-skill such as public speaking, relationship-building, and servant leadership. In my future experiences, I am interested in continuing to utilize and grow these skills to contribute to solving real-world problems related to human, societal, and environmental health in ways that align with my values.
-
-## Gallery
+I am a mixed methods researcher with my most recent experience at the University of Minnesota in the sport management program and [Global Institute for Responsible Sport Organizations](https://girso.umn.edu). I grew up in a modest home in the unincorporated town of South Range, Wisconsin and spent my first 18 years under the same roof, although I currently live in Minneapolis, Minnesota. I enjoy being active, playing board games, reading about history, listening to my favorite podcasts, spending time with friends, and trying new things. I'm passionate about human, societal, and environmental health and solving problems in these fields through quantitative and qualitative methods.
 
 ::: {layout-ncol=3 layout-valign="center"}
 ![](img/presenting.JPG)
 
-![](img/friends.jpeg)
-
 ![](img/nassm-sm-students.jpg) 
+
+![](img/friends.jpeg)
 :::
 
