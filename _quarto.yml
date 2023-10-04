@@ -8,7 +8,7 @@ website:
   navbar:
     background: "#01998D"
     left:
-      - text: "Academic Projects"
+      - text: "Statistical Analyses"
         menu:
           - text: Polynomial Effects
             href: projects/fertility/index.qmd
