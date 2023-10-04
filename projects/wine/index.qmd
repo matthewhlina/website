@@ -160,7 +160,7 @@ Drawing from this simplified model, we can conclude that on average, each **one 
 #| echo: false
 #| warning: false
 #| label: fig-fits
-#| fig-cap: "Best fits for wines from CA and not from CA, according to Model 3."
+#| fig-cap: "Best fits for wines from CA and wines not from CA, according to Model 3."
 
 ggplot(data = wine, aes(x = rating, y = price)) + 
   geom_point(alpha = 0.2, size = 3) + 
