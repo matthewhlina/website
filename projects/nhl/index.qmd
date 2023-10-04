@@ -27,7 +27,7 @@ A spaghetti plot was created to understand how the NHL and each team's FCI has c
 #| echo: false
 #| warning: false
 #| label: fig-spaghetti
-#| fig-cap: "Cost of attending a NHL game (FCI) over time for each NHL team. The black line represents the average cost of attending NHL games."
+#| fig-cap: "Cost of attending a NHL game (FCI) over time for each NHL team. The bold, black line represents the average cost of attending NHL games."
 
 #library(AICcmodavg)
 library(broom)
