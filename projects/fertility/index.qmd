@@ -76,7 +76,7 @@ An investigation of the standardized residuals for this linear model suggest tha
 ```{r}
 #| echo: false
 #| label: fig-quadratics
-#| fig-cap: "Quadratic fits showing the relationship between fertility rate and female education level for 4 different GNI levels."
+#| fig-cap: "Quadratic fits showing the relationship between fertility rate and female education level for four different GNI levels."
 #| fig-align: left
 #| fig-width: 10
 #| fig-height: 6
@@ -120,5 +120,5 @@ $$
 \end{align}
 $$
 
-Like in the linear model, countries with high levels of GNI are associated with a lower infant mortality rate and female education has a negative effect on infant mortality rate, controlling for GNI. However, while the negative effect of female education level remains the same across all levels of female education in the linear model, in the quadratic model, this effect decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages but its effect diminishes.
+Like in the linear model, countries with high levels of GNI are associated with a lower infant mortality rate and female education has a negative effect on infant mortality rate, controlling for GNI. However, while the negative effect of female education level remains the same across all levels of female education in the linear model, in the quadratic model, this effect decreases as female education level increases. Another way of saying this is that the negative effect of female education on infant mortality rate is greater at lower levels of education than it is at higher levels (i.e., there is a greater effect at education level 1 than at education level 12). This can be interpreted to mean that the initial years of female education are more critical to decreasing infant mortality than later years. Education still has an effect in these later stages, but its effect diminishes.
 
