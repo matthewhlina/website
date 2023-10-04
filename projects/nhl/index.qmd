@@ -41,6 +41,7 @@ library(lme4)
 library(lmtest)
 library(patchwork)
 library(performance)
+library(scales)
 library(stargazer)
 library(texreg)
 library(tidyverse)
@@ -58,7 +59,9 @@ ggplot(data = nhl, aes(x = year, y = fci))+
     axis.title.x =  element_markdown(),
     axis.title.y =  element_markdown()
   ) +
-  ylab("Fan Cost Index (FCI)") +
+  scale_y_continuous(
+    name = "FCI (USD)",
+    labels = label_number(prefix = "$")) +
   scale_x_continuous(
     name = "Year",
     breaks = c(2002, 2004, 2006, 2008, 2010, 2012, 2014)
@@ -113,22 +116,32 @@ stargazer(lmer.1, lmer.2, lmer.3,
           column.sep.width = "10pt")
 ```
 
-Model 3 has the most empirical support for representing the data (AICc = 2385.28). Below is the written equation for this model.
+Model 3 has the most empirical support for representing the data (AICc = 2385.28), although Model 2 has some support too (`r html("&#916;AICc = 3.23")`). Below is the written equation for this model.
 
 $$
 \begin{split}
-\hat{\mathrm{FCI}_{i}} &= 244.82+ 5.21(\mathrm{Year-2002}_{ij}) + 0.41(\mathrm{Year-2002}_{ij})^2 +\mathrm{b_{0j}}
+\mathrm{Model~3}:~\hat{\mathrm{FCI}_{i}} &= 244.82+ 5.21(\mathrm{Year-2002}_{ij}) + 0.41(\mathrm{Year-2002}_{ij})^2 +\mathrm{b_{0j}}
 \end{split}
 $$
+Where $b_{0j}$ represent a random effect on the y-intercept associated with each team.
 
 ### Interpretting Model 3
 
-The variation between teams (58.50%) accounts for more variation than the variation within a team (41.50%). In practical terms, this means that a team's FCI in 2002 (the y-intercept) has a larger impact on the FCI of a given year than the rate of change in FCI of a team (the slope). 
+The predicted average league-wide FCI for all teams at the initial measurement occasion (in 2002) is \$244.82. Each subsequent year is associated with an increase of league-wide FCI by at least \$5.61, and this effect of year increases over time. The variation between teams (58.50%) accounts for more variation than the variation within a team (41.50%). In other words, this means that a team's FCI in 2002 (the y-intercept) has a larger effect on the FCI of a given year than the rate of change of that team's FCI from 2002-2014 (Year). The random effect in this model adjusts the team's FCI in 2002 only.
 
-The predicted average FCI for all teams at the initial measurement occasion (in 2002) is 244.82.
-Each subsequent year is associated with an increase in FCI by at least 5.61 points. The effect of year on FCI increases over time.
+### Predicted FCI of the Minnesota Wild
 
-Additionally, here is a figure that presents our model as well as a trend line that represents the FCI for the Minnesota Wild NHL team.
+The Minnesota Wild was selected from the sample to demonstrate this model in use. The random effect of the Minnesota Wild's FCI in 2002 is \$22.76 ($b_{0j} = 22.76$), meaning that the Wild's FCI in 2002 is \$22.76 higher than the league average. This value was substituted into our initial equation, which was then simplified. These steps are shown below.
+
+$$
+\begin{split}
+\mathrm{FCI}_i &= \beta_{0} + \beta_{1}(\mathrm{Year-2002}_{ij}) + \beta_{2}(\mathrm{Year-2002}_{ij})^2 +\mathrm{b_{0j}} +\epsilon_{0j} \\[1em]
+\hat{\mathrm{FCI}_{MN}} &= 244.82+5.21(\mathrm{Year-2002}_{MNj}) + 0.41(\mathrm{Year-2002}_{MNj})^2 +22.76 \\[1em]
+ &= 267.58+5.21(\mathrm{Year-2002}_{MNj}) + 0.41(\mathrm{Year-2002}_{MNj})^2 
+\end{split}
+$$
+
+This predictive equation for the Minnesota Wild was then plotted along with our equation for the league average. The Wild's fitted line is higher on the y-intercept than the fitted line for the league average, \$22.76 to be exact. This difference remains constant throughout the entire time period as no random effect of team on year was included in this model, meaning that the rate of change for each team is the same across all teams.
 
 ```{r}
 #| message: false
@@ -158,5 +171,7 @@ ggplot(data = nhl, aes(x = c_year, y = fci)) +
   scale_color_manual(name='Hockey Teams',
                      breaks=c('MN Wild', 'Average'),
                      values=c('MN Wild' = 'green', 'Average' = 'red')) +
-  ylab("FCI")
+  scale_y_continuous(
+    name = "FCI (USD)",
+    labels = label_number(prefix = "$"))
 ```
