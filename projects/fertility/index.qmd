@@ -19,6 +19,7 @@ library(tidyverse)
 library(broom)
 library(gt)
 library(ggtext)
+library(dplyr)
 fertility <- read_csv("fertility.csv")
 ```
 
@@ -44,7 +45,7 @@ To better understand the causes of variation in infant mortality rates across co
 
 #create scatterplot
 ggplot(fertility, aes(x = educ_female, y = infant_mortality)) + 
-  geom_point(alpha = 0.2) + 
+  geom_point(alpha = 0.2, size = 2, color = "black", stroke = 0.8) + 
   theme_bw(base_size = 14) +
   theme(
     panel.grid = element_blank(),
@@ -74,6 +75,14 @@ These results suggest that a one-unit change in female education level (or an ad
 An investigation of the standardized residuals for this linear model suggest that a linear model may not accurately represent the data and that a model including a quadratic effect of female education may be more appropriate as well as one that segments GNI into four levels. This new model was regressed, controlling for each GNI and was found to better represent the data ($\mathrm{R}^2 = 0.711$) than the linear model ($\mathrm{R}^2 = 0.606$). Again, the equation and a figure for this model are provided below.
 
 ```{r}
+fertility <- fertility %>%
+  mutate(
+    gni_class = paste(gni_class, "GNI", sep = " ")
+  )  
+```
+
+
+```{r}
 #| echo: false
 #| label: fig-quadratics
 #| fig-cap: "Quadratic fits showing the relationship between fertility rate and female education level for four different GNI levels."
@@ -82,10 +91,10 @@ An investigation of the standardized residuals for this linear model suggest tha
 #| fig-height: 6
 #| out-width: 100%
 #| out-height: 100%
-
+  
 #create scatterplot
 ggplot(fertility, aes(x = educ_female, y = infant_mortality)) + 
-  geom_point(alpha = 0.2) + 
+  geom_point(alpha = 0.9, aes(fill = gni_class), shape = 21, size = 2, color = "black", stroke = 0.8) + 
   theme_bw(base_size = 14) +
   theme(
     panel.grid = element_blank(),
@@ -94,6 +103,10 @@ ggplot(fertility, aes(x = educ_female, y = infant_mortality)) +
     legend.position = c(0.8, 0.8)
   ) +
   scale_color_manual(name = "GNI", 
+                     values = c("Upper GNI" = "red", "Upper/Middle GNI" = "orange", "Low/Middle GNI" = "green", "Low GNI" = "blue"), 
+                     breaks = c("Upper GNI", "Upper/Middle GNI", "Low/Middle GNI", "Low GNI")
+                     ) +
+  scale_fill_manual(name = "GNI", 
                      values = c("Upper GNI" = "red", "Upper/Middle GNI" = "orange", "Low/Middle GNI" = "green", "Low GNI" = "blue"), 
                      breaks = c("Upper GNI", "Upper/Middle GNI", "Low/Middle GNI", "Low GNI")
                      ) +
