@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/matthewhlina/website/index.html</loc>
-    <lastmod>2023-10-04T22:56:47.973Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/matthewhlina/website/projects/nhl/index.html</loc>
-    <lastmod>2023-10-04T22:56:46.277Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/matthewhlina/website/projects/fertility/index.html</loc>
-    <lastmod>2023-10-04T22:56:35.077Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/matthewhlina/website/research/index.html</loc>
-    <lastmod>2023-10-04T22:56:28.897Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/matthewhlina/website/about/index.html</loc>
-    <lastmod>2023-10-04T22:56:30.597Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/matthewhlina/website/projects/wine/index.html</loc>
-    <lastmod>2023-10-04T22:56:40.381Z</lastmod>
+    <lastmod>2024-01-07T02:19:51.649Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/matthewhlina/website/projects/same-sex-marriage/index.html</loc>
-    <lastmod>2023-10-04T22:56:47.337Z</lastmod>
+    <lastmod>2024-01-07T02:19:50.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/index.html</loc>
+    <lastmod>2024-01-07T02:19:48.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/research/index.html</loc>
+    <lastmod>2024-01-07T02:19:47.869Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/about/index.html</loc>
+    <lastmod>2024-01-07T02:19:48.405Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/projects/nhl/index.html</loc>
+    <lastmod>2024-01-07T02:19:49.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/matthewhlina/website/projects/wine/index.html</loc>
+    <lastmod>2024-01-07T02:19:51.161Z</lastmod>
   </url>
 </urlset>
